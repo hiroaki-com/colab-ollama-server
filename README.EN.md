@@ -1,0 +1,108 @@
+# Ollama Colab Free Server
+
+[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Colab](https://img.shields.io/badge/platform-Google%20Colab-orange.svg)](https://colab.research.google.com/github/hiroaki-com/colab-ollama-server/blob/main/ollama_colab_free_server_en.ipynb)
+[![Ollama](https://img.shields.io/badge/Ollama-compatible-blueviolet.svg)](https://ollama.com/)
+
+[English](./README.EN.md) | [日本語](./README.md)
+
+### Overview
+
+An LLM server that runs Ollama on Google Colab's GPU and exposes the Ollama endpoint via an ngrok tunnel. Connect coding assistants like Continue or Claude Code to local inference models for free.
+
+#### Key Features
+
+- Completely free. No data sent to external APIs — privacy protected via local inference
+- Select a model via UI; pull and launch are fully automated
+- Instantly connectable from Continue or Claude Code
+- OpenAI-compatible endpoint (`/v1`) also supported
+
+### Quick Start
+
+#### Notebooks
+
+**English:**
+```
+https://colab.research.google.com/github/hiroaki-com/colab-ollama-server/blob/main/ollama_colab_free_server_en.ipynb
+```
+
+#### Steps
+
+1. Open the notebook in Google Colab
+2. Select Runtime > Change runtime type > T4 GPU
+3. Create a free account at [ngrok](https://dashboard.ngrok.com/get-started/your-authtoken) and obtain your auth token
+4. Run the Model Registry cell to load the model list, then select the model to launch
+5. Enter your ngrok token in the Server cell and run it
+6. Set the displayed endpoint URL in your client tool
+
+### Client Configuration
+
+After the server starts, configuration examples are printed automatically in the terminal.
+
+#### Continue Extension (`~/.continue/config.yaml`)
+
+```yaml
+models:
+  - title: qwen3:8b
+    provider: ollama
+    model: qwen3:8b
+    apiBase: https://xxxx.ngrok-free.app
+    contextLength: 16384
+```
+
+#### Claude Code (shell env)
+
+```bash
+export ANTHROPIC_BASE_URL=https://xxxx.ngrok-free.app
+export ANTHROPIC_API_KEY=dummy
+claude --model qwen3:8b
+```
+
+#### OpenAI-Compatible Clients (e.g. Codex CLI)
+
+Append `/v1` to the base URL.
+
+```
+https://xxxx.ngrok-free.app/v1
+```
+
+### Model Configuration
+
+In the Model Registry cell, specify the models to launch as a comma-separated list.
+
+```python
+model_list = "qwen3:8b, qwen3:14b, qwen2.5-coder:7b, deepseek-r1:8b"
+```
+
+Find official model names at [https://ollama.com/search](https://ollama.com/search).
+
+**Recommended model sizes for T4 GPU**
+
+| Size | Performance | Notes |
+|:---:|:---:|:---|
+| 8B | Fast | Recommended |
+| 14B | Moderate | Practical range |
+| 20B+ | Slow | Not recommended |
+
+### Tech Stack
+
+- Runtime: Google Colab (Python 3.10+)
+- LLM Engine: Ollama
+- Tunnel: ngrok / pyngrok
+- UI: ipywidgets
+
+### License
+
+MIT License. See [LICENSE](LICENSE) for details.
+
+### Credits
+
+- [Ollama](https://ollama.com/) - Local LLM inference engine
+- [Google Colab](https://colab.research.google.com/) - Free GPU environment
+- [ngrok](https://ngrok.com/) - Secure tunneling
+
+### Support
+
+- Bug reports: [Issues](../../issues)
+- Questions & discussions: [Discussions](../../discussions)

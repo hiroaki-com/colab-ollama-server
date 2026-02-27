@@ -1,0 +1,111 @@
+# Continue Extension Configuration Sample
+# =========================================
+# Place this file at: ~/.continue/config.yaml
+#
+# Usage:
+#   1. Start the Ollama Colab Free Server and copy the endpoint URL displayed in the output.
+#   2. Replace all occurrences of https://xxxx.ngrok-free.app with your actual ngrok URL.
+#   3. Uncomment or remove models you do not need.
+
+name: Colab Cloud Config
+version: 1.0.0
+schema: v1
+models:
+  - name: qwen3:8b (ollama-colab-server)
+    provider: ollama
+    model: qwen3:8b
+    apiBase: https://xxxx.ngrok-free.dev
+    apiKey: ollama
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      temperature: 0.4
+      maxTokens: 2048
+    contextLength: 32768
+  - name: qwen3:14b (ollama-colab-server)
+    provider: ollama
+    model: qwen3:14b
+    apiBase: https://xxxx.ngrok-free.dev
+    apiKey: ollama
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      temperature: 0.4
+      maxTokens: 2048
+    contextLength: 32768
+  - name: qwen2.5-coder:7b (ollama-colab-server)
+    provider: ollama
+    model: qwen2.5-coder:7b
+    apiBase: https://xxxx.ngrok-free.dev
+    apiKey: ollama
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      temperature: 0.2
+      maxTokens: 4096
+    contextLength: 32768
+  - name: qwen2.5-coder:14b (ollama-colab-server)
+    provider: ollama
+    model: qwen2.5-coder:14b
+    apiBase: https://xxxx.ngrok-free.dev
+    apiKey: ollama
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      temperature: 0.2
+      maxTokens: 4096
+    contextLength: 32768
+  - name: ministral-3:8b (ollama-colab-server)
+    provider: ollama
+    model: ministral-3:8b
+    apiBase: https://xxxx.ngrok-free.dev
+    apiKey: ollama
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      temperature: 0.3
+      maxTokens: 2048
+    contextLength: 32768
+  - name: ministral-3:14b (ollama-colab-server)
+    provider: ollama
+    model: ministral-3:14b
+    apiBase: https://xxxx.ngrok-free.dev
+    apiKey: ollama
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      temperature: 0.3
+      maxTokens: 2048
+    contextLength: 32768
+  - name: devstral-small-2:24b (ollama-colab-server)
+    provider: ollama
+    model: devstral-small-2:24b
+    apiBase: https://xxxx.ngrok-free.dev
+    apiKey: ollama
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      temperature: 0.3
+      maxTokens: 2048
+    contextLength: 16384
+  - name: gpt-oss:20b (ollama-colab-server)
+    provider: ollama
+    model: gpt-oss:20b
+    apiBase: https://xxxx.ngrok-free.dev
+    apiKey: ollama
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      temperature: 0.6
+      maxTokens: 2048
+    contextLength: 16384
+  - name: deepseek-r1:8b (ollama-colab-server)
+    provider: ollama
+    model: deepseek-r1:8b
+    apiBase: https://xxxx.ngrok-free.dev
+    apiKey: ollama
+    roles: [chat, edit, apply]
+    defaultCompletionOptions:
+      temperature: 0.4
+      maxTokens: 2048
+    contextLength: 32768
+context:
+  - provider: code
+  - provider: docs
+  - provider: diff
+  - provider: terminal
+  - provider: problems
+  - provider: folder
+  - provider: codebase
