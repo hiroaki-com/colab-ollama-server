@@ -42,6 +42,8 @@ https://colab.research.google.com/github/hiroaki-com/colab-ollama-server/blob/ma
 
 #### Continue Extension（`~/.continue/config.yaml`）
 
+> 設定のサンプルファイルとして [`config.sample.yaml`](./config.sample.yaml) を利用いただけます。
+
 ```yaml
 models:
   - title: qwen3:8b

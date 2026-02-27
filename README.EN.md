@@ -41,6 +41,7 @@ https://colab.research.google.com/github/hiroaki-com/colab-ollama-server/blob/ma
 After the server starts, configuration examples are printed automatically in the terminal.
 
 #### Continue Extension (`~/.continue/config.yaml`)
+> A sample configuration file is available: [`config.sample.yaml`](./config.sample.yaml).
 
 ```yaml
 models:
