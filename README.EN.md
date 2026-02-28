@@ -11,6 +11,33 @@
 
 An LLM server that runs Ollama on Google Colab's GPU and exposes the Ollama endpoint via an ngrok tunnel. Connect coding assistants like Continue or Claude Code to local inference models for free.
 
+#### UML Interaction Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant E as ngrok Edge
+    participant A as ngrok Agent
+    participant O as Ollama Server
+    participant M as Model (VRAM)
+    C->>E: HTTPS POST /api/generate
+    E->>A: Reverse Tunnel (TLS)
+    A->>O: TCP :11434
+    O->>M: Inference (T4 GPU)
+    M-->>O: tokens
+    O-->>A: stream response
+    A-->>E: tunnel
+    E-->>C: HTTPS response
+```
+
+| participant | Role |
+|:---|:---|
+| **Client** | Source tool such as Continue or Claude Code |
+| **ngrok Edge** | ngrok cloud endpoint that provides a public HTTPS URL |
+| **ngrok Agent** | pyngrok process running on Colab, established via `ngrok.connect(11434)` |
+| **Ollama Server** | Local server started with `OLLAMA_HOST=0.0.0.0:11434` (`OLLAMA_KEEP_ALIVE=24h`) |
+| **Model (VRAM)** | Model loaded into T4 GPU VRAM; generates tokens sequentially via `/api/generate` |
+
 #### Key Features
 
 - Completely free. No data sent to external APIs — privacy protected via local inference

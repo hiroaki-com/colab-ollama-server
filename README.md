@@ -11,6 +11,33 @@
 
 Google ColabのGPU上でOllamaを動作させ、ngrokトンネル経由でOllamaエンドポイントを公開するLLMサーバーです。ContinueやClaude Codeなどのコーディングアシスタントから、無料でローカル推論モデルに接続できます。
 
+#### UML Interaction Sequence Diagram
+
+```mermaid
+sequenceDiagram
+    participant C as Client
+    participant E as ngrok Edge
+    participant A as ngrok Agent
+    participant O as Ollama Server
+    participant M as Model (VRAM)
+    C->>E: HTTPS POST /api/generate
+    E->>A: Reverse Tunnel (TLS)
+    A->>O: TCP :11434
+    O->>M: Inference (T4 GPU)
+    M-->>O: tokens
+    O-->>A: stream response
+    A-->>E: tunnel
+    E-->>C: HTTPS response
+```
+
+| 構成要素 | 役割 |
+|:---|:---|
+| **Client** | Continue / Claude Code 等の接続元ツール |
+| **ngrok Edge** | ngrok クラウド上のエンドポイント。HTTPS で公開URLを提供 |
+| **ngrok Agent** | Colab 上で動作する pyngrok プロセス。`ngrok.connect(11434)` で確立 |
+| **Ollama Server** | `OLLAMA_HOST=0.0.0.0:11434` で起動したローカルサーバー（`OLLAMA_KEEP_ALIVE=24h`） |
+| **Model (VRAM)** | T4 GPU の VRAM にロードされたモデル。`/api/generate` でトークンを逐次生成 |
+
 #### 主な特徴
 
 - 完全無料。外部APIへのデータ送信なし、ローカル推論によるプライバシー保護
