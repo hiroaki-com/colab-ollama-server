@@ -7,6 +7,8 @@
 
 [English](./README.EN.md) | [日本語](./README.md)
 
+https://github.com/user-attachments/assets/b40c8d63-ad0d-4149-993f-a11f12b4e58a
+
 ### Overview
 
 An LLM server that runs Ollama on Google Colab's GPU and exposes the Ollama endpoint via an ngrok tunnel. Connect coding assistants like Continue or Claude Code to local inference models for free.
