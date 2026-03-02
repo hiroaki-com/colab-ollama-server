@@ -7,11 +7,13 @@
 
 [English](./README.EN.md) | [日本語](./README.md)
 
+https://github.com/user-attachments/assets/98084bb4-6eb0-4e47-850b-f1bae0311c70
+
 ### 概要
 
 Google ColabのGPU上でOllamaを動作させ、ngrokトンネル経由でOllamaエンドポイントを公開するLLMサーバーです。ContinueやClaude Codeなどのコーディングアシスタントから、無料でローカル推論モデルに接続できます。
 
-#### UML Interaction Sequence Diagram
+#### 通信フロー
 
 ```mermaid
 sequenceDiagram
