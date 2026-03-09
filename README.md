@@ -90,12 +90,19 @@ export ANTHROPIC_API_KEY=dummy
 claude --model qwen3:8b
 ```
 
-#### OpenAI 互換クライアント（Codex CLI 等）
+#### Codex（拡張機能 / CLI）
 
-ベースURLの末尾に `/v1` を追加することで利用できます。
-
+`~/.codex/config.toml`
+```toml
+model = "qwen3:8b"
 ```
-https://xxxx.ngrok-free.app/v1
+
+環境変数（シェル）
+```bash
+export OPENAI_BASE_URL=https://xxxx.ngrok-free.app/v1
+export OPENAI_API_KEY=dummy
+code .    # 拡張機能の起動時
+codex     # CLIの起動時
 ```
 
 ### モデル設定
