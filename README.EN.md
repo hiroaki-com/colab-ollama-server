@@ -89,12 +89,19 @@ export ANTHROPIC_API_KEY=dummy
 claude --model qwen3:8b
 ```
 
-#### OpenAI-Compatible Clients (e.g. Codex CLI)
+#### Codex (Extension / CLI)
 
-Append `/v1` to the base URL.
-
+`~/.codex/config.toml`
+```toml
+model = "qwen3:8b"
 ```
-https://xxxx.ngrok-free.app/v1
+
+Shell env
+```bash
+export OPENAI_BASE_URL=https://xxxx.ngrok-free.app/v1
+export OPENAI_API_KEY=dummy
+code .    # When launching the extension
+codex     # When launching the CLI
 ```
 
 ### Model Configuration
@@ -102,7 +109,7 @@ https://xxxx.ngrok-free.app/v1
 In the Model Registry cell, specify the models to launch as a comma-separated list.
 
 ```python
-model_list = "qwen3:8b, qwen3:14b, qwen2.5-coder:7b, deepseek-r1:8b"
+model_list = "qwen3:8b, qwen3:14b, qwen2.5-coder:7b, deepseek-r1:8b, qwen3.5:9b, qwen3.5:4b, qwen3.5:2b, qwen3.5:0.8b"
 ```
 
 Find official model names at [https://ollama.com/search](https://ollama.com/search).
