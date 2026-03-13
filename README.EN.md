@@ -89,6 +89,23 @@ export ANTHROPIC_API_KEY=dummy
 claude --model qwen3:8b
 ```
 
+> **💡 Tips**
+>
+> Claude Code prepends an Attribution Header to each request, which invalidates the KV cache of local models and can reduce inference speed by up to 90%.
+> The more turns a session has, the greater the recomputation cost — making this especially impactful for agentic use cases.
+> Adding the following to `~/.claude/settings.json` enables cache reuse from the second turn onward, significantly improving response speed.
+>
+> `~/.claude/settings.json`
+> ```json
+> {
+>   "env": {
+>     "CLAUDE_CODE_ATTRIBUTION_HEADER": "0"
+>   }
+> }
+> ```
+> Reference: https://unsloth.ai/docs/basics/claude-code#fixing-90-slower-inference-in-claude-code
+
+
 #### Codex (Extension / CLI)
 
 `~/.codex/config.toml`
