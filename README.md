@@ -89,6 +89,22 @@ export ANTHROPIC_BASE_URL=https://xxxx.ngrok-free.app
 export ANTHROPIC_API_KEY=dummy
 claude --model qwen3:8b
 ```
+> **💡TIPs**
+>
+> Claude Code はリクエストに Attribution Header を付加するため、ローカルモデルの KV キャッシュが無効化され推論が最大90%低下します。
+> 特にターン数が多くなるほど再計算コストが増大するため、agentic な用途ほど影響が顕著です。
+> `~/.claude/settings.json` に以下を追加することで、2ターン目以降のキャッシュが有効になり応答が高速化します。
+>
+> `~/.claude/settings.json`
+> ```json
+> {
+>   "env": {
+>     "CLAUDE_CODE_ATTRIBUTION_HEADER": "0"
+>   }
+> }
+> ```
+> 参考: https://unsloth.ai/docs/basics/claude-code#fixing-90-slower-inference-in-claude-code
+
 
 #### Codex（拡張機能 / CLI）
 
